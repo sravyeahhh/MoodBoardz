@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoodBoardz </title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+
+  <!--Auth Container -->
+  <div id="auth-container">
+    <h1>MoodBoardz 🌈</h1>
+    <div class="tab-buttons">
+      <button onclick="switchTab('login')" class="active">Login</button>
+      <button onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" class="auth-form">
+      <input type="email" id="login-email" placeholder="Email" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button onclick="login()">Let’s vibe in 💫</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form" class="auth-form hidden">
+      <input type="email" id="signup-email" placeholder="Email" />
+      <input type="password" id="signup-password" placeholder="Password" />
+      <button onclick="signup()">Join the slay 👑</button>
+    </div>
+
+    <button onclick="loginAnonymously()" class="guest-btn">Continue as Guest 👻</button>
+  </div>
+
+  <!-- Mood Container -->
+  <div id="mood-container" class="hidden">
+    <button id="logout-btn" onclick="logout()" class="logout">Logout 🚪</button>
+    <h2>How we vibin’ today?</h2>
+
+    <div class="emoji-picker">
+      <button class="emoji-button selected" onclick="selectEmoji(this, '😎')">😎</button>
+      <button class="emoji-button" onclick="selectEmoji(this, '🥲')">🥲</button>
+      <button class="emoji-button" onclick="selectEmoji(this, '💀')">💀</button>
+      <button class="emoji-button" onclick="selectEmoji(this, '🫶')">🫶</button>
+    </div>
+
+    <label>Pick your vibe color 🎨</label>
+    <div id="color-swatches">
+      <button class="color-swatch selected" style="background:#f8b195" data-color="#f8b195"></button>
+      <button class="color-swatch" style="background:#f67280" data-color="#f67280"></button>
+      <button class="color-swatch" style="background:#c06c84" data-color="#c06c84"></button>
+      <button class="color-swatch" style="background:#6c5b7b" data-color="#6c5b7b"></button>
+    </div>
+    <input type="hidden" id="color" value="#f8b195" />
+    <input type="text" id="note" placeholder="Spill the tea 🫖" />
+    <button onclick="saveMood()">Save My Vibe ✨</button>
+  </div>
+
+  <!--  Weekly Report -->
+  <div id="weekly-report" class="hidden">
+    <h2>Weekly Vibe Recap 📅</h2>
+    <canvas id="moodChart"></canvas>
+    <p id="mood-commentary"></p>
+  </div>
+
+  <!--  Cat popup -->
+  <div id="cat-popup" class="hidden"><p></p></div>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
